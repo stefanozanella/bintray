@@ -1,6 +1,7 @@
 # Bintray
 
-TODO: Write a gem description
+The **bintray** gem provides a Ruby interface to
+[Bintray](https://bintray.com/) REST API.
 
 ## Installation
 
@@ -17,8 +18,6 @@ Or install it yourself as:
     $ gem install bintray
 
 ## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
