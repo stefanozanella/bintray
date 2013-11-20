@@ -3,6 +3,7 @@
 *.gem
 *.rbc
 .bundle
+.envrc
 Gemfile.lock
 pkg
 vendor
