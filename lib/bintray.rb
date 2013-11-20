@@ -1,5 +1,2 @@
-require "bintray/version"
-
-module Bintray
-  # Your code goes here...
-end
+require 'bintray/version'
+require 'bintray/client'
