@@ -1,0 +1,18 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - jruby-18mode
+  - jruby-19mode
+  - rbx-19mode
+
+bundler_args: --path vendor/bundle
+
+script:
+  - bundle exec rake test:all
+
+env:
+  global:
+  - secure: YulG2YIUqkrnULlx2DMeqgmcvhmcaU1r5olUcQ5SKHSsNCANEElEgxjZUmQES0hMBrtwAYzcBTn4LHz2ywdqCA2KlraknbvFZALYGy4H2EH3rkSNHSncIaqmQlF0ehP8IxCxoewUijLsL3rOq48f8Y0nn0Tu/nuo0HI+A3VNafk=
+  - secure: ZbDaW6rK9rQ96Wbpz87nAUJW/DSX6ojgJ+NWGM2kWCByEVpD1YDcjb13cLcyNAeDzL8wG21DDJ1fTGUkfvhEwPMjlWL5haPyR/6Q7JCLyIhz756/7pAJhTEJr8hJRtQd5rvVzPuNsdPjluST46LpVQG1jSaKylGW6EyPoZXmNaY=
