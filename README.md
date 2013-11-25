@@ -1,5 +1,9 @@
 # Bintray
 
+[![Gem Version](https://badge.fury.io/rb/bintray.png)](http://badge.fury.io/rb/bintray)
+[![Build Status](https://travis-ci.org/stefanozanella/bintray.png?branch=master)](https://travis-ci.org/stefanozanella/bintray)
+[![Dependency Status](https://gemnasium.com/stefanozanella/bintray.png)](https://gemnasium.com/stefanozanella/bintray)
+
 The **bintray** gem provides a Ruby interface to
 [Bintray](https://bintray.com/) REST API.
 
