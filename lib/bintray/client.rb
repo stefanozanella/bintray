@@ -1,18 +1,15 @@
+require 'bintray/repository'
 require 'httparty'
 
 module Bintray
   class Client
-    def initialize(opts)
-      @opts = opts
+    def initialize(params)
+      @params = params
     end
 
-    def create_package(package, license, repo)
-      resp = HTTParty.post("#{@opts[:endpoint]}/packages/#{@opts[:user]}/#{repo}",
-        { :body => { :name => package, :licenses => [ license ] }.to_json,
-          :headers => { 'Content-Type' => 'application/json' },
-          :basic_auth => { :username => @opts[:user], :password => @opts[:key] } })
-
-      Package.from_hash resp
+    def repo(name)
+      resp = HTTParty.get("#{@params[:endpoint]}/repos/#{@params[:user]}/#{name}")
+      return Repository.new resp.parsed_response
     end
   end
 end
