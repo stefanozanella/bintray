@@ -15,4 +15,19 @@ describe 'looking for a repository' do
     repo.labels.must_include 'test'
     repo.package_count.must_equal 1
   end
+
+  it 'is possible to retrieve info about a package belonging to the repo' do
+    repo = client.repo('generic')
+    package = repo.package('stub')
+
+    package.must_be_kind_of Bintray::Package
+    package.name.must_equal 'stub'
+    package.repo.must_equal 'generic'
+    package.owner.must_equal 'bintray-test-user'
+    package.desc.must_equal 'A stub package without actual content.'
+    package.created.must_equal Time.parse("2014-01-25T19:38:09.601Z")
+    package.updated.must_equal Time.parse("2014-01-25T19:38:09.601Z")
+    package.labels.must_include 'stub'
+    package.labels.must_include 'test'
+  end
 end

@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubygems-tasks"
   spec.add_development_dependency "minitest"
   spec.add_development_dependency "mocha"
+  spec.add_development_dependency "webmock"
 
   spec.signing_key = Pathname.new(signing_key_file).expand_path if signing_key_file
   spec.cert_chain = ["rubygems-stefanozanella.crt"]

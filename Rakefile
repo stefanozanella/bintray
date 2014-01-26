@@ -5,7 +5,12 @@ namespace :test do
   suites = [:end_to_end, :unit, :integration]
 
   desc "Run all test suites"
-  task :all => suites
+  Rake::TestTask.new :all do |t|
+    t.libs << 'lib'
+    t.libs << 'test'
+    t.pattern = "test/**/*.rb"
+    t.verbose = true
+  end
 
   suites.each do |suite|
     Rake::TestTask.new suite do |t|

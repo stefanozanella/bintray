@@ -9,7 +9,7 @@ module Bintray
 
     def repo(name)
       resp = HTTParty.get("#{@params[:endpoint]}/repos/#{@params[:user]}/#{name}")
-      return Repository.new resp.parsed_response
+      return Repository.new API.new(@params[:endpoint]), resp.parsed_response
     end
   end
 end

@@ -1,21 +1,12 @@
 require 'time'
+require 'bintray/package'
 
 module Bintray
-  class Repository
-    attr_reader :name, :owner, :desc, :labels, :package_count, :created
+  class Repository < Entity
+    attr :name, :owner, :desc, :labels, :package_count
 
-    def initialize(attrs = {})
-      attrs.each do |attr, value|
-        self.send("#{attr}=", value)
-      end
-    end
-
-    private
-
-    attr_writer :name, :owner, :desc, :labels, :package_count
-
-    def created=(value)
-      @created = Time.parse(value)
+    def package(pkg)
+      Package.new @api, @api.get("/packages/#{owner}/#{name}/#{pkg}")
     end
   end
 end
