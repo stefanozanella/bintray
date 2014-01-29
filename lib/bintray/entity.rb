@@ -3,19 +3,9 @@ module Bintray
     class << self
       def attr(*attrs)
         attrs.each do |attr|
-          define_accessors_for(attr)
-        end
-      end
-
-      private
-
-      def define_accessors_for(attr)
-        define_method(attr) do
-          raw_attrs[attr.to_s]
-        end
-
-        define_method("#{attr}=") do |value|
-          raw_attrs[attr.to_s] = value
+          define_method(attr) do
+            raw_attrs[attr.to_s]
+          end
         end
       end
     end

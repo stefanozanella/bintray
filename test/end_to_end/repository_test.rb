@@ -16,6 +16,11 @@ describe 'looking for a repository' do
     repo.package_count.must_equal 1
   end
 
+  it 'throws an error if the specified repository doesn`t exist' do
+    error = proc { client.repo('non_existent') }.must_raise Bintray::Error::NotFound
+    error.message.must_match(/repo 'non_existent' was not found/i)
+  end
+
   it 'is possible to retrieve info about a package belonging to the repo' do
     repo = client.repo('generic')
     package = repo.package('stub')
