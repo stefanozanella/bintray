@@ -21,6 +21,11 @@ describe 'looking for a repository' do
     error.message.must_match(/repo 'non_existent' was not found/i)
   end
 
+  it 'tells whether a repo exists or not' do
+    assert client.repo?('generic'), 'expected repo `generic` to exist'
+    refute client.repo?('non_existent'), 'expected repo `non_existent` to not exist'
+  end
+
   it 'is possible to retrieve info about a package belonging to the repo' do
     repo = client.repo('generic')
     package = repo.package('stub')
