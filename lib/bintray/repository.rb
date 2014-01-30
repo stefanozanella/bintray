@@ -1,4 +1,3 @@
-require 'time'
 require 'bintray/package'
 
 module Bintray

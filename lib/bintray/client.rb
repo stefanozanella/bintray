@@ -1,5 +1,4 @@
 require 'bintray/repository'
-require 'httparty'
 
 module Bintray
   class Client
@@ -16,9 +15,7 @@ module Bintray
     end
 
     def repo(name)
-      resp = HTTParty.get("#{@params[:endpoint]}/repos/#{@params[:user]}/#{name}", :format => :plain)
-      raise Bintray::Error::NotFound, resp.body if resp.not_found?
-      return Repository.new @api, JSON.parse(resp.body)
+      Repository.new @api, @api.get("/repos/#{@params[:user]}/#{name}")
     end
   end
 end
