@@ -11,4 +11,11 @@ describe Bintray::API do
 
     assert_requested request
   end
+
+  it 'throws an error when the resource is not found' do
+    stub_request(:get, resource_url).to_return(
+      :body => "not found", :status => 404)
+
+    proc { api.get(resource_path) }.must_raise Bintray::Error::NotFound
+  end
 end
