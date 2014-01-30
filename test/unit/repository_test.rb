@@ -24,8 +24,8 @@ describe Bintray::Repository do
 
   describe 'creating a new package' do
     let(:pkg) { 'test' }
-    let(:license) { 'Apache-2.0' }
-    let(:licenses) { [ 'Apache-2.0', 'MIT' ] }
+    let(:license) { Bintray::License::MIT }
+    let(:licenses) { [ Bintray::License::MIT, Bintray::License::BSD ] }
 
     it 'translates the request into a POST API call with the correct body' do
       api.expects(:post).once.with('/packages/owner/repo',

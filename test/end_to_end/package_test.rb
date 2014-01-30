@@ -4,7 +4,7 @@ describe 'creating a package' do
   let(:client)    { Bintray::Client.new connection_params }
   let(:repo)      { client.repo('generic') }
   let(:pkg_name)  { 'test-package' }
-  let(:license)   { 'Apache-2.0' }
+  let(:license)   { Bintray::License::MIT }
 
   after do
     require 'httparty'
