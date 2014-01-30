@@ -14,5 +14,9 @@ module Bintray
     def package(pkg)
       Package.new @api, @api.get("/packages/#{owner}/#{name}/#{pkg}")
     end
+
+    def add_package(pkg, licenses)
+      Package.new @api, @api.post("/packages/#{owner}/#{name}", {:name => pkg, :licenses => [ licenses ].flatten })
+    end
   end
 end

@@ -13,6 +13,11 @@ def connection_params
     :key      => ENV['BINTRAY_TEST_KEY'] }
 end
 
-def stub_endpoint
-  "http://stub-service"
+def auth_for(user, key)
+  return '' unless user && key
+  "#{user}:#{key}@"
+end
+
+def stub_endpoint(user = nil, key = nil)
+  "http://#{auth_for(user,key)}stub-service"
 end

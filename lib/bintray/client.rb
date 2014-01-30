@@ -4,7 +4,9 @@ module Bintray
   class Client
     def initialize(params)
       @params = params
-      @api = API.new(@params[:endpoint])
+      @api = API.new(@params[:endpoint],
+                     @params[:user],
+                     @params[:key])
     end
 
     def repo?(name)
