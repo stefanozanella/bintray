@@ -30,9 +30,8 @@ describe Bintray::Repository do
 
   describe 'using a repository' do
     it 'tells whether a specific package exists in the repo or not' do
-      skip
       assert repo.package?('stub'), 'expected package `stub` to exist within repo `generic`'
-      refute repo.package?('non_existen'), 'expected package `non_existent` to NOT exist within repo `generic`'
+      refute repo.package?('non_existent'), 'expected package `non_existent` to NOT exist within repo `generic`'
     end
 
     it 'is possible to retrieve info about a package belonging to the repo' do
