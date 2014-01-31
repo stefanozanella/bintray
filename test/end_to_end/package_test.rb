@@ -6,9 +6,7 @@ describe 'managing packages' do
   let(:license)   { Bintray::License::MIT }
 
   after do
-    require 'httparty'
-    HTTParty.delete("https://api.bintray.com/packages/#{connection_params[:user]}/generic/#{pkg_name}",
-                    :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
+    force_repository_rollback_of pkg_name
   end
 
   describe 'creating a package' do
@@ -18,9 +16,7 @@ describe 'managing packages' do
           the mandatory fields} do
       package = repo.add_package(pkg_name, license)
 
-      assert repo.package?(pkg_name),
-        "expected package `#{pkg_name}` to be added to repo `#{repo.name}`, but it was not"
-
+      repo.must_contain_package pkg_name
       package.must_be_kind_of Bintray::Package
       package.name.must_equal pkg_name
     end
@@ -35,9 +31,7 @@ describe 'managing packages' do
 
     it 'is possible to delete a package belonging to a repo' do
       repo.del_package(pkg_name)
-
-      refute repo.package?(pkg_name),
-        "expected `#{pkg_name}` to have been deleted from repo `#{repo.name}`, but it was still there"
+      repo.wont_contain_package pkg_name
     end
   end
 end

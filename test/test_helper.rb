@@ -38,3 +38,18 @@ def force_repository_rollback_of pkg
     HTTParty.delete("https://api.bintray.com/packages/#{connection_params[:user]}/generic/#{pkg}",
                     :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
 end
+
+module Minitest::Assertions
+  def assert_contains_package(pkg, repo)
+    assert repo.package?(pkg),
+      "expected repo `#{repo.name}` to contain package `#{pkg}`, but it didn't"
+  end
+
+  def refute_contains_package(pkg, repo)
+    refute repo.package?(pkg),
+      "expected repo `#{repo.name}` to not contain package `#{pkg}`, but it did"
+  end
+end
+
+Bintray::Repository.infect_an_assertion :assert_contains_package, :must_contain_package
+Bintray::Repository.infect_an_assertion :refute_contains_package, :wont_contain_package
