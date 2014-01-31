@@ -19,13 +19,17 @@ module Bintray
       resp.parsed_response
     end
 
+    def delete(path)
+      HTTParty.delete("#{@endpoint}#{path}", authenticated)
+    end
+
     private
 
     def request_body_for(data)
       {:body => data.to_json, :headers => { 'Content-Type' => 'application/json' }}
     end
 
-    def authenticated(data)
+    def authenticated(data = {})
       data.merge(auth_options)
     end
 

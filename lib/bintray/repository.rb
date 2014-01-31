@@ -18,5 +18,9 @@ module Bintray
     def add_package(pkg, licenses)
       Package.new @api, @api.post("/packages/#{owner}/#{name}", {:name => pkg, :licenses => [ licenses ].flatten })
     end
+
+    def del_package(pkg)
+      @api.delete("/packages/#{owner}/#{name}/#{pkg}")
+    end
   end
 end

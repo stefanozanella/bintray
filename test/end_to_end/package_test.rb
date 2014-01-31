@@ -1,9 +1,8 @@
 require 'test_helper'
 
-describe 'creating a package' do
+describe 'managing packages' do
   let(:client)    { Bintray::Client.new connection_params }
   let(:repo)      { client.repo('generic') }
-  let(:pkg_name)  { 'test-package' }
   let(:license)   { Bintray::License::MIT }
 
   after do
@@ -12,14 +11,33 @@ describe 'creating a package' do
                     :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
   end
 
-  it %q{is possible to add a new package into an existing repo, providing only
-        the mandatory fields} do
-    package = repo.add_package(pkg_name, license)
+  describe 'creating a package' do
+    let(:pkg_name)  { 'test-package' }
 
-    assert repo.package?(pkg_name),
-      "expected package `#{pkg_name}` to be added to repo `#{repo.name}`, but it was not"
+    it %q{is possible to add a new package into an existing repo, providing only
+          the mandatory fields} do
+      package = repo.add_package(pkg_name, license)
 
-    package.must_be_kind_of Bintray::Package
-    package.name.must_equal pkg_name
+      assert repo.package?(pkg_name),
+        "expected package `#{pkg_name}` to be added to repo `#{repo.name}`, but it was not"
+
+      package.must_be_kind_of Bintray::Package
+      package.name.must_equal pkg_name
+    end
+  end
+
+  describe 'deleting a package' do
+    let(:pkg_name)  { 'scrap' }
+
+    before do
+      repo.add_package(pkg_name, license)
+    end
+
+    it 'is possible to delete a package belonging to a repo' do
+      repo.del_package(pkg_name)
+
+      refute repo.package?(pkg_name),
+        "expected `#{pkg_name}` to have been deleted from repo `#{repo.name}`, but it was still there"
+    end
   end
 end
