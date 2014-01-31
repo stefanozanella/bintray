@@ -14,7 +14,7 @@ describe Bintray::Repository do
       repo.created.must_equal Time.parse("2013-11-20T12:50:42.405Z")
       repo.labels.must_include 'generic'
       repo.labels.must_include 'test'
-      repo.package_count.must_equal 1
+      repo.package_count.must_be :>, 0
     end
 
     it 'throws an error if the specified repository doesn`t exist' do
