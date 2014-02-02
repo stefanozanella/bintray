@@ -6,7 +6,6 @@ describe Bintray::Repository do
 
   describe 'looking for a repository' do
     it 'is possible to retrieve info about a repo given its name' do
-
       repo.must_be_kind_of Bintray::Repository
       repo.name.must_equal 'generic'
       repo.owner.must_equal 'bintray-test-user'
@@ -23,15 +22,15 @@ describe Bintray::Repository do
     end
 
     it 'tells whether a repo exists or not' do
-      assert client.repo?('generic'), 'expected repo `generic` to exist'
-      refute client.repo?('non_existent'), 'expected repo `non_existent` to NOT exist'
+      client.must_contain_repo 'generic'
+      client.wont_contain_repo 'non_existent'
     end
   end
 
   describe 'using a repository' do
     it 'tells whether a specific package exists in the repo or not' do
-      assert repo.package?('stub'), 'expected package `stub` to exist within repo `generic`'
-      refute repo.package?('non_existent'), 'expected package `non_existent` to NOT exist within repo `generic`'
+      repo.must_contain_package 'stub'
+      repo.wont_contain_package 'non_existent'
     end
 
     it 'is possible to retrieve info about a package belonging to the repo' do

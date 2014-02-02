@@ -40,6 +40,16 @@ def force_repository_rollback_of pkg
 end
 
 module Minitest::Assertions
+  def assert_contains_repo(repo, client)
+    assert client.repo?(repo),
+      "expected repo `#{repo}` to exist, but it didn't"
+  end
+
+  def refute_contains_repo(repo, client)
+    refute client.repo?(repo),
+      "expected repo `#{repo}` to not exist, but it did"
+  end
+
   def assert_contains_package(pkg, repo)
     assert repo.package?(pkg),
       "expected repo `#{repo.name}` to contain package `#{pkg}`, but it didn't"
@@ -49,7 +59,23 @@ module Minitest::Assertions
     refute repo.package?(pkg),
       "expected repo `#{repo.name}` to not contain package `#{pkg}`, but it did"
   end
+
+  def assert_contains_version(version, package)
+    assert package.version?(version),
+      "expected version `#{version}` to exist for package `#{package}`, but it didn't"
+  end
+
+  def refute_contains_version(version, package)
+    refute package.version?(version),
+      "expected version `#{version}` to not exist for package `#{package}`, but it did"
+  end
 end
+
+Bintray::Client.infect_an_assertion :assert_contains_repo, :must_contain_repo
+Bintray::Client.infect_an_assertion :refute_contains_repo, :wont_contain_repo
 
 Bintray::Repository.infect_an_assertion :assert_contains_package, :must_contain_package
 Bintray::Repository.infect_an_assertion :refute_contains_package, :wont_contain_package
+
+Bintray::Package.infect_an_assertion :assert_contains_version, :must_contain_version
+Bintray::Package.infect_an_assertion :refute_contains_version, :wont_contain_version

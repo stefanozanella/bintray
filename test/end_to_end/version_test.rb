@@ -21,10 +21,7 @@ describe 'managing versions' do
   end
 
   it 'is possible to know if a version exists for a specific package' do
-    skip
-    assert package.version?('0.0.2'),
-      "expected version `0.0.1` to exist for package `stub`, but it didn't"
-    refute package.version?('not.a.real.version.number'),
-      "expected version `not.a.real.version.number` to not exist for package `stub`, but it did"
+    package.must_contain_version '0.0.2'
+    package.wont_contain_version 'not.a.real.version.number'
   end
 end
