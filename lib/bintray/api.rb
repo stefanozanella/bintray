@@ -9,7 +9,7 @@ module Bintray
     end
 
     def get(path)
-      resp = HTTParty.get("#{@endpoint}#{path}")
+      resp = HTTParty.get("#{@endpoint}#{path}", authenticated)
       raise Bintray::Error::NotFound, resp.body if resp.not_found?
       resp.parsed_response
     end

@@ -3,7 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'pathname'
-require 'bintray/version'
+require 'bintray/lib_version'
 
 signing_key_file = ENV['RUBYGEMS_SIGNING_KEY_FILE']
 

@@ -23,6 +23,10 @@ module Bintray
       Time.parse raw_attrs['updated']
     end
 
+    def released
+      Time.parse raw_attrs['released']
+    end
+
     private
 
     def raw_attrs

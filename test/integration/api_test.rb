@@ -53,6 +53,10 @@ describe Bintray::API do
       request = stub_request(:delete, authenticated_resource_url)
       api.delete(resource_path)
       assert_requested request
+
+      request = stub_request(:get, authenticated_resource_url)
+      api.get(resource_path)
+      assert_requested request
     end
   end
 end

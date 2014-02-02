@@ -1,3 +1,5 @@
 module Bintray
-  VERSION = "0.0.1"
+  class Version < Entity
+    attr :name, :package, :repo, :desc, :owner, :labels, :ordinal
+  end
 end
