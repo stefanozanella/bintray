@@ -24,4 +24,17 @@ describe 'managing versions' do
     package.must_contain_version '0.0.2'
     package.wont_contain_version 'not.a.real.version.number'
   end
+
+  describe 'adding a version' do
+    let(:version) { '0.0.3' }
+
+    before do
+      force_version_rollback version
+    end
+
+    it 'is possible to add a new version for a package' do
+      package.add_version version
+      package.must_contain_version version
+    end
+  end
 end

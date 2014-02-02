@@ -6,7 +6,7 @@ describe 'managing packages' do
   let(:license)   { Bintray::License::MIT }
 
   after do
-    force_repository_rollback_of pkg_name
+    force_package_rollback pkg_name
   end
 
   describe 'creating a package' do

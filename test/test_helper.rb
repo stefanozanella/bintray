@@ -33,9 +33,15 @@ def stub_proto
   "http"
 end
 
-def force_repository_rollback_of pkg
+def force_package_rollback pkg
     require 'httparty'
     HTTParty.delete("https://api.bintray.com/packages/#{connection_params[:user]}/generic/#{pkg}",
+                    :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
+end
+
+def force_version_rollback version
+    require 'httparty'
+    HTTParty.delete("https://api.bintray.com/packages/#{connection_params[:user]}/generic/stub/versions/#{version}",
                     :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
 end
 

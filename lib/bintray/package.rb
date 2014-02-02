@@ -14,5 +14,9 @@ module Bintray
     def version(ver)
       Version.new @api, @api.get("/packages/#{owner}/#{repo}/#{name}/versions/#{ver}")
     end
+
+    def add_version(ver)
+      Version.new @api, @api.post("/packages/#{owner}/#{repo}/#{name}/versions", { :name => ver })
+    end
   end
 end
