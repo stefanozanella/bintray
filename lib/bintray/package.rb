@@ -18,5 +18,9 @@ module Bintray
     def add_version(ver)
       Version.new @api, @api.post("/packages/#{owner}/#{repo}/#{name}/versions", { :name => ver })
     end
+
+    def del_version(ver)
+      @api.delete("/packages/#{owner}/#{repo}/#{name}/versions/#{ver}")
+    end
   end
 end

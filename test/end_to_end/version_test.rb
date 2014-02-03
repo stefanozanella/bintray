@@ -28,13 +28,30 @@ describe 'managing versions' do
   describe 'adding a version' do
     let(:version) { '0.0.3' }
 
-    before do
+    after do
       force_version_rollback version
     end
 
     it 'is possible to add a new version for a package' do
       package.add_version version
       package.must_contain_version version
+    end
+  end
+
+  describe 'deleting a version' do
+    let(:version) { '0.0.4.pre' }
+
+    before do
+      package.add_version version
+    end
+
+    after do
+      force_version_rollback version
+    end
+
+    it 'is possible to remove a package`s version' do
+      package.del_version version
+      package.wont_contain_version version
     end
   end
 end
