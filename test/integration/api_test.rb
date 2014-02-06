@@ -25,6 +25,14 @@ describe Bintray::API do
       :headers => { 'Content-Type' => 'application/json' }
   end
 
+  it 'makes a PUT HTTP request against the configured endpoint, passing data as JSON' do
+    request = stub_request(:put, resource_url)
+    api.put(resource_path, request_body)
+
+    assert_requested request, :body => request_body.to_json,
+      :headers => { 'Content-Type' => 'application/json' }
+  end
+
   it 'makes a DELETE HTTP request against the configured endpoint' do
     request = stub_request(:delete, resource_url)
     api.delete(resource_path)

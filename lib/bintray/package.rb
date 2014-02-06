@@ -12,11 +12,11 @@ module Bintray
     end
 
     def version(ver)
-      Version.new @api, @api.get("/packages/#{owner}/#{repo}/#{name}/versions/#{ver}")
+      Version.new @api, Filesystem.new, @api.get("/packages/#{owner}/#{repo}/#{name}/versions/#{ver}")
     end
 
     def add_version(ver)
-      Version.new @api, @api.post("/packages/#{owner}/#{repo}/#{name}/versions", { :name => ver })
+      Version.new @api, Filesystem.new, @api.post("/packages/#{owner}/#{repo}/#{name}/versions", { :name => ver })
     end
 
     def del_version(ver)

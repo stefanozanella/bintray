@@ -19,6 +19,11 @@ module Bintray
       resp.parsed_response
     end
 
+    def put(path, data)
+      resp = HTTParty.put("#{@endpoint}#{path}", authenticated(request_body_for(data)))
+      resp.parsed_response
+    end
+
     def delete(path)
       HTTParty.delete("#{@endpoint}#{path}", authenticated)
     end

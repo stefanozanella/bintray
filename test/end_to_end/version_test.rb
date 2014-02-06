@@ -13,7 +13,7 @@ describe 'managing versions' do
     version.owner.must_equal 'bintray-test-user'
     version.desc.must_equal 'The first version'
     version.created.must_equal Time.parse("2014-02-01T20:25:30.775Z")
-    version.updated.must_equal Time.parse("2014-02-01T20:33:27.742Z")
+    version.updated.must_equal Time.parse("2014-02-06T13:23:22.841Z")
     version.released.must_equal Time.parse("2014-02-01T00:00:00.000Z")
     version.labels.must_include 'stub'
     version.labels.must_include 'test'

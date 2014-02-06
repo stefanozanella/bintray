@@ -45,6 +45,10 @@ def force_version_rollback version
                     :basic_auth => { :username => connection_params[:user], :password => connection_params[:key] })
 end
 
+def fixture_binary
+  File.expand_path(File.join(__FILE__, '..', 'fixtures', 'not-a-real-package.bin'))
+end
+
 module Minitest::Assertions
   def assert_contains_repo(repo, client)
     assert client.repo?(repo),

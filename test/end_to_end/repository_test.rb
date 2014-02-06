@@ -43,7 +43,7 @@ describe Bintray::Repository do
       package.owner.must_equal 'bintray-test-user'
       package.desc.must_equal 'A stub package without actual content.'
       package.created.must_equal Time.parse("2014-01-25T19:38:09.601Z")
-      package.updated.must_equal Time.parse("2014-01-25T19:38:09.601Z")
+      package.updated.must_be_kind_of Time
       package.labels.must_include 'stub'
       package.labels.must_include 'test'
     end
